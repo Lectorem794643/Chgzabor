@@ -1,11 +1,27 @@
 services:
+  gateway:
+    build:
+      context: ./gateway
+      dockerfile: Dockerfile
+    container_name: gateway
+    ports:
+      - "8000:8080" # Открыт только этот сервис
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+    networks:
+      - app-network
+    depends_on:
+      - frontend-manager
+      - model
+      - pdf
+
   frontend-manager:
     build:
       context: ./frontendmanager
       dockerfile: Dockerfile
     container_name: frontend-manager
-    ports:
-      - "8000:8080"
+    expose:
+      - "8080" # Доступ только внутри сети
     environment:
       - SPRING_PROFILES_ACTIVE=dev
     networks:
@@ -16,8 +32,8 @@ services:
       context: ./model
       dockerfile: Dockerfile
     container_name: model
-    ports:
-      - "8001:8080"
+    expose:
+      - "8080" # Доступ только внутри сети
     environment:
       - SPRING_PROFILES_ACTIVE=dev
     networks:
@@ -28,8 +44,8 @@ services:
       context: ./pdf
       dockerfile: Dockerfile
     container_name: pdf
-    ports:
-      - "8002:8080"
+    expose:
+      - "8080" # Доступ только внутри сети
     environment:
       - SPRING_PROFILES_ACTIVE=dev
     networks:

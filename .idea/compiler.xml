@@ -7,8 +7,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Gateway" />
       </profile>
-      <profile name="Annotation profile for Pdf" enabled="true">
+      <profile name="Annotation profile for Chgzabor" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -24,6 +25,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="FrontendManager" options="-parameters" />
+      <module name="Gateway" options="-parameters" />
       <module name="Model" options="-parameters" />
       <module name="Pdf" options="-parameters" />
     </option>
