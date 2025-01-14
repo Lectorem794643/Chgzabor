@@ -1,0 +1,186 @@
+{
+  "id": "SlidingOptima001",
+  "image": "/images/SlidingOptima001.png",
+  "blocks": {
+    "drawing": {
+      "label": "Чертеж",
+      "value": "Ворота Optima (заполн.: жалюзи), цельные"
+    },
+    "parameters": {
+      "title": "Введите основные параметры",
+      "fields": [
+        {
+          "label": "L",
+          "type": "number",
+          "id": "L",
+          "placeholder": "..."
+        },
+        {
+          "label": "H",
+          "type": "number",
+          "id": "H",
+          "placeholder": "..."
+        },
+        {
+          "label": "Количество столбов",
+          "type": "number",
+          "id": "pillarCount",
+          "placeholder": "..."
+        },
+        {
+          "label": "Направляющая балка",
+          "type": "select",
+          "id": "beam",
+          "options": [
+            "МИКРО 60х55 mm",
+            "ЭКО 60х70 mm",
+            "ЕВРО 90х75 mm",
+            "МАКС 135х130 mm"
+          ]
+        }
+      ]
+    },
+    "calculatedParameters": {
+      "title": "Параметры будут рассчитаны автоматически",
+      "fields": [
+        {
+          "label": "B",
+          "type": "number",
+          "id": "B",
+          "placeholder": "..."
+        },
+        {
+          "label": "E",
+          "type": "number",
+          "id": "E",
+          "placeholder": "..."
+        },
+        {
+          "label": "C",
+          "type": "number",
+          "id": "C",
+          "placeholder": "..."
+        },
+        {
+          "label": "D",
+          "type": "number",
+          "id": "D",
+          "placeholder": "..."
+        },
+        {
+          "label": "A",
+          "type": "number",
+          "id": "A",
+          "placeholder": "..."
+        },
+        {
+          "label": "Высота столбов",
+          "type": "number",
+          "id": "pillarHeight",
+          "placeholder": "..."
+        }
+      ]
+    },
+    "productSettings": {
+      "title": "Задайте характеристики изделия",
+      "fields": [
+        {
+          "label": "Столб на прямоугольном фланце",
+          "type": "select",
+          "id": "pillarRectangularFlange",
+          "options": [
+            "Да",
+            "Нет",
+            "_"
+          ]
+        },
+        {
+          "label": "Вид столба",
+          "type": "select",
+          "id": "pillarType",
+          "options": [
+            "60х40",
+            "60х60",
+            "80х80",
+            "100х100",
+            "_"
+          ]
+        },
+        {
+          "label": "Вид заполнения",
+          "type": "select",
+          "id": "typeFilling",
+          "options": [
+            "Жалюзи",
+            "Секционка",
+            "3D сетка",
+            "Профлист",
+            "Штакетник",
+            "_"
+          ]
+        },
+        {
+          "label": "Цвет (RAL)",
+          "type": "select",
+          "id": "colorRal1",
+          "options": [
+            "8017 Коричневый",
+            "7024 Темносерый",
+            "7004 Светлосерый",
+            "7040 Серый",
+            "_"
+          ]
+        },
+        {
+          "label": null,
+          "type": "select",
+          "id": "colorRal2",
+          "options": [
+            "Матовый",
+            "Глянец",
+            "Муар",
+            "_"
+          ]
+        }
+      ]
+    },
+    "comment": {
+      "label": "Комментарий",
+      "type": "textarea",
+      "id": "comment",
+      "placeholder": "Добавьте комментарий к заказу",
+      "rows": 5
+    },
+    "productSettingsFinal": {
+      "title": "Настройки изделия",
+      "fields": [
+        {
+          "label": "Отсуп от грунта",
+          "type": "number",
+          "id": "groundIndent",
+          "value": 100
+        },
+        {
+          "label": "Регулировка зазора",
+          "type": "number",
+          "id": "gapAdjustment",
+          "value": 200
+        },
+        {
+          "label": "Конструкционная труба",
+          "type": "select",
+          "id": "pipe",
+          "options": [
+            "30",
+            "40",
+            "60",
+            "80"
+          ]
+        }
+      ]
+    }
+  }
+}
+
+
+

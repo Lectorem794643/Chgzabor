@@ -1,0 +1,25 @@
+  {
+    "drawingName": "Ворота Optima (заполн.: жалюзи), цельные",
+    "L": "1000",
+    "H": "1000",
+    "pillarCount": "",
+    "beam": "МИКРО 60х55 mm",
+    "B": "",
+    "E": "",
+    "C": "",
+    "D": "",
+    "A": "",
+    "pillarHeight": "",
+    "pillarRectangularFlange": "Да",
+    "pillarType": "60х40",
+    "typeFilling": "Жалюзи",
+    "colorRal1": "8017 Коричневый",
+    "colorRal2": "Матовый",
+    "comment": "",
+    "groundIndent": "100",
+    "gapAdjustment": "200",
+    "pipe": "30"
+  }
+
+
+  

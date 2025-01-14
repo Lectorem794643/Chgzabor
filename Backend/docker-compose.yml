@@ -1,0 +1,40 @@
+services:
+  frontend-manager:
+    build:
+      context: ./frontendmanager
+      dockerfile: Dockerfile
+    container_name: frontend-manager
+    ports:
+      - "8000:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+    networks:
+      - app-network
+
+  model:
+    build:
+      context: ./model
+      dockerfile: Dockerfile
+    container_name: model
+    ports:
+      - "8001:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+    networks:
+      - app-network
+
+  pdf:
+    build:
+      context: ./pdf
+      dockerfile: Dockerfile
+    container_name: pdf
+    ports:
+      - "8002:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
