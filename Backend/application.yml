@@ -1,0 +1,38 @@
+spring:
+  profiles:
+    active: dev
+
+  application:
+    name: chgzabor
+
+  cloud:
+    gateway:
+      routes:
+        - # Маршрут для сервиса Frontend Manager
+          - id: frontend-manager-service
+            uri: http://frontend-manager:8001
+            predicates:
+              - Path=/frontend-manager/**
+
+        # Маршрут для сервиса Model
+        - id: model-service
+          uri: http://model:8002
+          predicates:
+            - Path=/model/**
+
+        # Маршрут для сервиса PDF
+        - id: pdf-service
+          uri: http://pdf:8080  # Доступ к pdf сервису внутри Docker-сети
+          predicates:
+            - Path=/pdf/**  # Все запросы с этим путём будут перенаправляться на pdf-сервис
+
+  server:
+    # Порты для каждого сервиса
+    gateway:
+      port: 8000
+    frontend-manager:
+      port: 8001
+    model:
+      port: 8002
+    pdf:
+      port: 8003
