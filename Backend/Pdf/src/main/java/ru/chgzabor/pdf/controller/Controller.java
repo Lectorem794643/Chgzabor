@@ -14,9 +14,8 @@ import java.util.Map;
 
 @RestController
 public class Controller {
-    // Branch test
     @CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "*")
-    @PostMapping("/pdf/model/{id}")
+    @PostMapping("/{id}/pdf")
     public ResponseEntity<byte[]> generatePDF(@PathVariable String id, @RequestBody Map<String, Object> data) throws IOException {
         try {
             Class<?> clazz = Class.forName("ru.chgzabor.pdf.implement." + id);
@@ -34,7 +33,6 @@ public class Controller {
             headers.setContentDispositionFormData("filename", id + ".pdf");
 
             return new ResponseEntity<>(pdfBytes, headers, HttpStatus.OK);
-
         } catch (ClassNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         } catch (Exception e) {
