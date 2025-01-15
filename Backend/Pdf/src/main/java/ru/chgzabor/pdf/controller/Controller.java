@@ -16,7 +16,7 @@ import java.util.Map;
 public class Controller {
     // Branch test
     @CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "*")
-    @PostMapping("/model/{id}/pdf")
+    @PostMapping("/pdf/model/{id}")
     public ResponseEntity<byte[]> generatePDF(@PathVariable String id, @RequestBody Map<String, Object> data) throws IOException {
         try {
             Class<?> clazz = Class.forName("ru.chgzabor.pdf.implement." + id);

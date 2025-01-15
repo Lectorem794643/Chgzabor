@@ -11,12 +11,10 @@ import java.lang.reflect.Method;
 @RestController
 public class Controller {
     @CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "*")
-    @PostMapping("/model/{id}/calculating")
+    @PostMapping("/{id}/calculating")
     public ResponseEntity<GlobalDTO> processData(@PathVariable String id, @RequestBody String jsonString) {
         try {
             GlobalDTO dataModel = GlobalDTO.fromJsonString(jsonString); // Преобразование JSON в GlobalDTO
-
-
             Class<?> clazz = Class.forName("ru.chgzabor.model.implement." + id);
             Constructor<?> constructor = clazz.getConstructor(GlobalDTO.class);
             Object instance = constructor.newInstance(dataModel);
