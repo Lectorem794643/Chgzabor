@@ -53,4 +53,4 @@ services:
 
 networks:
   app-network:
-    driver: bridge
+    driver: host  # Использование хостовой сети

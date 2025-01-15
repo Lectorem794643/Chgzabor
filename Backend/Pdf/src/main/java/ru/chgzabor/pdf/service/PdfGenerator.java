@@ -113,11 +113,6 @@ public abstract class PdfGenerator {
         createPdfWithRectangle(document, page, PAGE_INDENT, LINE_SPACING * 4 + 7, 20 * 3, 20 * 3);
     }
 
-
-
-
-
-
     private void loadFont() throws IOException {
         try (InputStream fontStream = new ClassPathResource(FONT_PATH).getInputStream()) {
             FONT = PDType0Font.load(new PDDocument(), fontStream);
