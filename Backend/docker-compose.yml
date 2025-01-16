@@ -5,15 +5,15 @@ services:
       dockerfile: Dockerfile
     container_name: gateway
     ports:
-      - "8000:8080" # Открыт только этот сервис
-    environment:
-      - SPRING_PROFILES_ACTIVE=dev
+      - "${GATEWAY_EXTERNAL_PORT}:${GATEWAY_INTERNAL_PORT}"
     networks:
       - app-network
     depends_on:
       - frontend-manager
       - model
       - pdf
+    env_file:
+      - .env
 
   frontend-manager:
     build:
@@ -21,11 +21,11 @@ services:
       dockerfile: Dockerfile
     container_name: frontend-manager
     expose:
-      - "8080" # Доступ только внутри сети
-    environment:
-      - SPRING_PROFILES_ACTIVE=dev
+      - "${FRONTEND_MANAGER_INTERNAL_PORT}"
     networks:
       - app-network
+    env_file:
+      - .env
 
   model:
     build:
@@ -33,11 +33,11 @@ services:
       dockerfile: Dockerfile
     container_name: model
     expose:
-      - "8080" # Доступ только внутри сети
-    environment:
-      - SPRING_PROFILES_ACTIVE=dev
+      - "${MODEL_INTERNAL_PORT}"
     networks:
       - app-network
+    env_file:
+      - .env
 
   pdf:
     build:
@@ -45,12 +45,12 @@ services:
       dockerfile: Dockerfile
     container_name: pdf
     expose:
-      - "8080" # Доступ только внутри сети
-    environment:
-      - SPRING_PROFILES_ACTIVE=dev
+      - "${PDF_INTERNAL_PORT}"
     networks:
       - app-network
+    env_file:
+      - .env
 
 networks:
   app-network:
-    driver: host  # Использование хостовой сети
+    driver: bridge

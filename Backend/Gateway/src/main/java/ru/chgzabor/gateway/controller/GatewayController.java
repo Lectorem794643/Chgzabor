@@ -1,5 +1,6 @@
 package ru.chgzabor.gateway.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,13 +15,22 @@ import java.util.Map;
 class GatewayController {
     private final WebClient.Builder webClientBuilder;
 
+    @Value("${frontend.manager.url}")
+    private String frontendManagerBaseUrl;
+
+    @Value("${model.url}")
+    private String modelBaseUrl;
+
+    @Value("${pdf.url}")
+    private String pdfBaseUrl;
+
     public GatewayController(WebClient.Builder webClientBuilder) {
         this.webClientBuilder = webClientBuilder;
     }
 
     @GetMapping("/catalog")
     public ResponseEntity<String> getCatalog() {
-        String serviceUrl = "http://frontend-manager:8080/catalog";
+        String serviceUrl = frontendManagerBaseUrl + "/catalog";
         String response = webClientBuilder.build()
                 .get()
                 .uri(serviceUrl)
@@ -35,7 +45,7 @@ class GatewayController {
 
     @GetMapping("/{id}/product")
     public ResponseEntity<String> getProduct(@PathVariable String id) {
-        String serviceUrl = "http://frontend-manager:8080/" + id + "/product";
+        String serviceUrl = frontendManagerBaseUrl + "/" + id + "/product";
         String response = webClientBuilder.build()
                 .get()
                 .uri(serviceUrl)
@@ -50,7 +60,7 @@ class GatewayController {
 
     @PostMapping("/{id}/calculating")
     public ResponseEntity<String> processCalculating(@PathVariable String id, @RequestBody String json) {
-        String serviceUrl = "http://model:8080/" + id + "/calculating";
+        String serviceUrl = modelBaseUrl + "/" + id + "/calculating";
         String response = webClientBuilder.build()
                 .post()
                 .uri(serviceUrl)
@@ -66,7 +76,7 @@ class GatewayController {
 
     @PostMapping("/{id}/pdf")
     public ResponseEntity<byte[]> generatePDF(@PathVariable String id, @RequestBody Map<String, Object> data) {
-        String serviceUrl = "http://pdf:8080/" + id + "/pdf";
+        String serviceUrl = pdfBaseUrl + "/" + id + "/pdf";
         try {
             byte[] response = webClientBuilder.build()
                     .post()
