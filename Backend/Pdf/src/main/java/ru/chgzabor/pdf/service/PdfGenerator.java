@@ -62,7 +62,7 @@ public abstract class PdfGenerator {
                 PAGE_INDENT + 706, PAGE_HEIGHT - PAGE_INDENT, 61);
 
 
-        addImageToPdf(document, page, replacements, PAGE_INDENT, PAGE_HEIGHT - PAGE_INDENT - 5, PAGE_WIDTH - PAGE_INDENT * 2, 450);
+        // addImageToPdf(document, page, replacements, PAGE_INDENT, PAGE_HEIGHT - PAGE_INDENT - 5, PAGE_WIDTH - PAGE_INDENT * 2, 450);
         createPdfWithRectangle(document, page, PAGE_INDENT, PAGE_HEIGHT - PAGE_INDENT - 5, PAGE_WIDTH - PAGE_INDENT * 2, 450);
 
         logger.info("Adding signatures to the first page.");
@@ -203,8 +203,8 @@ public abstract class PdfGenerator {
     }
 
     private PDDocument addImageToPdf(PDDocument document, PDPage page, Map<String, String> replacements, float x, float y, float width, float height) throws IOException {
-        PngGenerator pngGenerator = new PngGenerator(inputFilePath);
-        byte[] imageBytes = pngGenerator.getPNG(replacements);
+        DrawingCreator drawingCreator = new DrawingCreator(inputFilePath);
+        byte[] imageBytes = drawingCreator.getPNG(replacements);
         PDImageXObject image = PDImageXObject.createFromByteArray(document, imageBytes, "png");
 
         float imageWidth = image.getWidth();
