@@ -1,20 +1,13 @@
 package ru.chgzabor.pdf.implement;
 
-
-import ru.chgzabor.pdf.service.PdfGenerator;
+import ru.chgzabor.pdf.service.PageContentGenerator;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SlidingOptima001 extends PdfGenerator {
-
-    public SlidingOptima001(String inputFilePath) {
-        super(inputFilePath);
-    }
-
+public class SlidingOptima001 extends PageContentGenerator {
     public byte[] generatePDF(Map<String, Object> dto) throws IOException {
-        // Создаём карту замен
         Map<String, String> replacements = new HashMap<>();
         replacements.put("L", String.valueOf(dto.get("L")));
         replacements.put("H", String.valueOf(dto.get("H")));
@@ -24,10 +17,11 @@ public class SlidingOptima001 extends PdfGenerator {
         replacements.put("D", String.valueOf(dto.get("D")));
         replacements.put("A", String.valueOf(dto.get("A")));
 
-        return run(replacements, dto);
+        return run("SlidingOptima001", replacements, dto);
     }
+}
 
-    // Можно переопределить функции заполнения контентом первой и второй страницы
+// Можно переопределить функции заполнения контентом первой и второй страницы
 
 //    @Override
 //    protected void addContentToFirstPage(PDDocument document, PDPage page, Map<String, String> dto) throws IOException {
@@ -38,4 +32,3 @@ public class SlidingOptima001 extends PdfGenerator {
 //    protected void addContentToSecondPage(PDDocument document, PDPage page, Map<String, Object> dto) throws IOException {
 //
 //    }
-}

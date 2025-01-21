@@ -23,8 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
-
 public class DrawingCreator {
     private static final Logger logger = LoggerFactory.getLogger(DrawingCreator.class);
     private final String inputFilePath;
@@ -34,8 +32,8 @@ public class DrawingCreator {
     private PDType0Font FONT;
 
     // Конструктор для инициализации пути к входному файлу
-    public DrawingCreator(String inputFilePath) {
-        this.inputFilePath = inputFilePath;
+    public DrawingCreator(String drawingId) {
+        this.inputFilePath = "drawing/" + drawingId + ".pdf";
     }
 
     public byte[] getPNG(Map<String, String> replacements) throws IOException {
@@ -112,14 +110,13 @@ public class DrawingCreator {
         logger.info("Заменяем буквы в документе...");
 
         for (DrawingCreator.LetterWithPosition letter : letters) {
-            String newCharacter = replacements.get(letter.getCharacter());
-            if (newCharacter != null) {
-                logger.info("Заменено '{}' на '{}' на странице {} (x={}, y={})",
-                        letter.getCharacter(), newCharacter, letter.getPageIndex(), letter.getX(), letter.getY());
-                letter.setCharacter(newCharacter);
-            }
+            String newCharacter = replacements.getOrDefault(letter.getCharacter(), "0");
+            logger.info("Заменено '{}' на '{}' на странице {} (x={}, y={})",
+                    letter.getCharacter(), newCharacter, letter.getPageIndex(), letter.getX(), letter.getY());
+            letter.setCharacter(newCharacter);
         }
     }
+
 
     public void processDocument(PDDocument document, List<DrawingCreator.LetterWithPosition> letters, Map<String, String> replacements) throws IOException {
         // Замена символов в тексте

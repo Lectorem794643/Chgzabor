@@ -10,34 +10,40 @@ services:
       - SPRING_PROFILES_ACTIVE=dev
     networks:
       - app-network
+    develop:
+      watch:
+        - action: rebuild
+          target: ./gateway/target/Gateway-0.0.1.jar
+          path: ./gateway/target
+
     depends_on:
-      - frontend-manager
-      - model
+      # - frontend-manager
+      # - model
       - pdf
 
-  frontend-manager:
-    build:
-      context: ./frontendmanager
-      dockerfile: Dockerfile
-    container_name: frontend-manager
-    expose:
-      - "8080" # Доступ только внутри сети
-    environment:
-      - SPRING_PROFILES_ACTIVE=dev
-    networks:
-      - app-network
+  # frontend-manager:
+  #   build:
+  #     context: ./frontendmanager
+  #     dockerfile: Dockerfile
+  #   container_name: frontend-manager
+  #   expose:
+  #     - "8080" # Доступ только внутри сети
+  #   environment:
+  #     - SPRING_PROFILES_ACTIVE=dev
+  #   networks:
+  #     - app-network
 
-  model:
-    build:
-      context: ./model
-      dockerfile: Dockerfile
-    container_name: model
-    expose:
-      - "8080" # Доступ только внутри сети
-    environment:
-      - SPRING_PROFILES_ACTIVE=dev
-    networks:
-      - app-network
+  # model:
+  #   build:
+  #     context: ./model
+  #     dockerfile: Dockerfile
+  #   container_name: model
+  #   expose:
+  #     - "8080" # Доступ только внутри сети
+  #   environment:
+  #     - SPRING_PROFILES_ACTIVE=dev
+  #   networks:
+  #     - app-network
 
   pdf:
     build:
@@ -50,7 +56,12 @@ services:
       - SPRING_PROFILES_ACTIVE=dev
     networks:
       - app-network
+    develop:
+      watch:
+        - action: rebuild
+          target: ./pdf/target/Pdf-0.0.1.jar
+          path: ./pdf/target
 
 networks:
   app-network:
-    driver: host  # Использование хостовой сети
+    driver: bridge  # Использование хостовой сети
