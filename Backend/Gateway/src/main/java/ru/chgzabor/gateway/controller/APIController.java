@@ -5,11 +5,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import java.util.List;
 import java.util.Map;
 
 
@@ -19,8 +17,8 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 
 @RestController
 @RequestMapping("/api")
-class GatewayController {
-    private static final Logger logger = LoggerFactory.getLogger(GatewayController.class);
+class APIController {
+    private static final Logger logger = LoggerFactory.getLogger(APIController.class);
 
     private final WebClient webClient;
 
@@ -34,7 +32,7 @@ class GatewayController {
     private String pdfBaseUrl;
 
     // Откатить назад, потому что 10 MB больно дохера для PDF
-    public GatewayController(WebClient.Builder webClientBuilder) {
+    public APIController(WebClient.Builder webClientBuilder) {
         this.webClient = webClientBuilder
                 .exchangeStrategies(ExchangeStrategies.builder()
                         .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(10 * 1024 * 1024)) // Увеличиваем до 10 MB

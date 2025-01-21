@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
+import ru.chgzabor.pdf.service.PDFAnalyzer;
 import ru.chgzabor.pdf.service.PageContentGenerator;
 
 import java.lang.reflect.Constructor;
@@ -50,6 +51,29 @@ public class Controller {
         } catch (Exception e) {
             logger.error("Unexpected error: " + e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    // Метод для получения информации о PDF
+    @GetMapping("/{id}/info")
+    public ResponseEntity<String> getPDFInfo(@PathVariable String id) {
+        String filePath = "drawing/" + id + ".pdf"; // Формируем путь к файлу на основе ID
+        PDFAnalyzer pdfAnalyzer = new PDFAnalyzer();
+
+        logger.info("Received request to analyze PDF with ID: {}", id);
+        logger.debug("Constructed file path: {}", filePath);
+
+        try {
+            // Анализируем PDF и получаем результат в формате JSON
+            String result = pdfAnalyzer.analyzeToJson(filePath);
+
+            // Логируем успешный анализ
+            logger.info("Successfully analyzed PDF: {}", filePath);
+            return ResponseEntity.ok(result); // Возвращаем результат
+        } catch (Exception e) {
+            // Логируем ошибку при анализе PDF
+            logger.error("Failed to analyze PDF: {}. Error: {}", filePath, e.getMessage(), e);
+            return ResponseEntity.status(500).body("{\"error\":\"Failed to analyze PDF\"}"); // Возвращаем ошибку
         }
     }
 }
