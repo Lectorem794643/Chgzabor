@@ -24,11 +24,14 @@ class GatewayController {
 
     private final WebClient webClient;
 
-    private String frontendManagerBaseUrl = "http://frontend-manager:8080";
+    @Value("${frontend.manager.base.url}")
+    private String frontendManagerBaseUrl;
 
-    private String modelBaseUrl = "http://model:8080";
+    @Value("${model.base.url}")
+    private String modelBaseUrl;
 
-    private String pdfBaseUrl = "http://pdf:8080";
+    @Value("${pdf.base.url}")
+    private String pdfBaseUrl;
 
     // Откатить назад, потому что 10 MB больно дохера для PDF
     public GatewayController(WebClient.Builder webClientBuilder) {

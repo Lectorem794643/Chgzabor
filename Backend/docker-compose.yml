@@ -5,9 +5,7 @@ services:
       dockerfile: Dockerfile
     container_name: gateway
     ports:
-      - "8000:8080" # Открыт только этот сервис
-    environment:
-      - SPRING_PROFILES_ACTIVE=dev
+      - "${GATEWAY_EXTERNAL_PORT}:${GATEWAY_INTERNAL_PORT}"
     networks:
       - app-network
     develop:
@@ -17,33 +15,45 @@ services:
           path: ./gateway/target
 
     depends_on:
-      # - frontend-manager
-      # - model
+      - frontend-manager
+      - model
       - pdf
+    env_file:
+      - .env
 
-  # frontend-manager:
-  #   build:
-  #     context: ./frontendmanager
-  #     dockerfile: Dockerfile
-  #   container_name: frontend-manager
-  #   expose:
-  #     - "8080" # Доступ только внутри сети
-  #   environment:
-  #     - SPRING_PROFILES_ACTIVE=dev
-  #   networks:
-  #     - app-network
+  frontend-manager:
+    build:
+      context: ./frontendmanager
+      dockerfile: Dockerfile
+    container_name: frontend-manager
+    expose:
+     - "${FRONTEND_MANAGER_INTERNAL_PORT}"
+    networks:
+      - app-network
+    develop:
+      watch:
+        - action: rebuild
+          target: ./frontendmanager/target/FrontendManager-0.0.1.jar
+          path: ./frontendmanager/target
+    env_file:
+      - .env
 
-  # model:
-  #   build:
-  #     context: ./model
-  #     dockerfile: Dockerfile
-  #   container_name: model
-  #   expose:
-  #     - "8080" # Доступ только внутри сети
-  #   environment:
-  #     - SPRING_PROFILES_ACTIVE=dev
-  #   networks:
-  #     - app-network
+  model:
+    build:
+      context: ./model
+      dockerfile: Dockerfile
+    container_name: model
+    expose:
+      - "${MODEL_INTERNAL_PORT}"
+    networks:
+      - app-network
+    develop:
+      watch:
+        - action: rebuild
+          target: ./model/target/Model-0.0.1.jar
+          path: ./model/target
+    env_file:
+      - .env
 
   pdf:
     build:
@@ -51,9 +61,7 @@ services:
       dockerfile: Dockerfile
     container_name: pdf
     expose:
-      - "8080" # Доступ только внутри сети
-    environment:
-      - SPRING_PROFILES_ACTIVE=dev
+      - "${PDF_INTERNAL_PORT}"
     networks:
       - app-network
     develop:
@@ -61,7 +69,9 @@ services:
         - action: rebuild
           target: ./pdf/target/Pdf-0.0.1.jar
           path: ./pdf/target
+    env_file:
+      - .env
 
 networks:
   app-network:
-    driver: bridge  # Использование хостовой сети
+    driver: bridge
