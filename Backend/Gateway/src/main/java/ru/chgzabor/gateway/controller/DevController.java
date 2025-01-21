@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @RestController
@@ -19,13 +18,9 @@ public class DevController {
     @Value("${pdf.base.url}")
     private String pdfBaseUrl;
 
-    // Откатить назад, потому что 10 MB больно дохера для PDF
     public DevController(WebClient.Builder webClientBuilder) {
         this.webClient = webClientBuilder
-                .exchangeStrategies(ExchangeStrategies.builder()
-                        .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(10 * 1024 * 1024)) // Увеличиваем до 10 MB
-                        .build())
-                .build();
+                .build();  // Дефолтное состояние, без изменения настроек памяти
     }
 
     // Получаем информацию о PDF
