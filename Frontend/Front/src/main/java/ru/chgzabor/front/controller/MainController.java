@@ -1,23 +1,38 @@
 package ru.chgzabor.front.controller;
 
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 @Controller
 public class MainController {
-
     @GetMapping("/")
-    public String getHome() {
-        return "catalog";
+    public void showHomePage(HttpServletResponse response) throws IOException {
+        var resource = new ClassPathResource("mainPage/catalog.html");
+        response.setContentType(MediaType.TEXT_HTML_VALUE);
+        response.setCharacterEncoding(StandardCharsets.UTF_8.name());
+        StreamUtils.copy(resource.getInputStream(), response.getOutputStream());
     }
 
     @GetMapping("/catalog")
-    public String getCatalog() {
-        return "catalog";
+    public void showCatalogPage(HttpServletResponse response) throws IOException {
+        var resource = new ClassPathResource("mainPage/catalog.html");
+        response.setContentType(MediaType.TEXT_HTML_VALUE);
+        response.setCharacterEncoding(StandardCharsets.UTF_8.name());
+        StreamUtils.copy(resource.getInputStream(), response.getOutputStream());
     }
 
-    @GetMapping("/not-found")
-    public String getNotFound() {
-        return "not-found";  // Ваша страница каталога
+    @GetMapping("/error-page")
+    public void showErrorPage(HttpServletResponse response) throws IOException {
+        var resource = new ClassPathResource("mainPage/error.html");
+        response.setContentType(MediaType.TEXT_HTML_VALUE);
+        response.setCharacterEncoding(StandardCharsets.UTF_8.name());
+        StreamUtils.copy(resource.getInputStream(), response.getOutputStream());
     }
 }

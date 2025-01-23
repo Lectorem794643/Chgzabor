@@ -6,36 +6,56 @@
     <title>UP - prototype</title>
 
     <style>
-        fieldset {
-            padding: 10px;
-            max-width: fit-content;
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: inline-block;
-            margin-bottom: 5px;
-        }
-
-        input[type="text"],
-        textarea {
-            margin-bottom: 20px;
-        }
-        .svg-container {
+        .wrapper {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 400px; /* A */
-            height: 300px; /* B */
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
-            overflow: hidden;
-            position: relative;
+            align-items: flex-start; /* Выравнивание по началу по вертикали */
+            gap: 20px; /* Отступ между блоками */
         }
-        .svg-container svg {
+
+        .container {
+            width: 800px;
+            height: 400px;
+            background-color: #d3d3d3; /* Серый цвет */
+            display: flex;
+            justify-content: center; /* Центрирование изображения по горизонтали */
+            align-items: center;    /* Центрирование изображения по вертикали */
+            /* overflow: hidden;       /* Обрезка излишков изображения */
+        }
+
+        .container img {
             max-width: 100%;
             max-height: 100%;
-            object-fit: contain;
+            object-fit: contain; /* Сохранение пропорций изображения */
+        }
+
+        fieldset {
+            width: 400px; /* Ширина блока fieldset */
+            padding: 20px; /* Внутренний отступ для поля */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Лёгкая тень для стиля */
+            background-color: #f9f9f9; /* Цвет фона для контраста */
+        }
+
+        fieldset legend {
+            font-weight: bold;
+        }
+
+        fieldset label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        fieldset input, fieldset select, fieldset button {
+            margin-bottom: 15px;
+            width: 50%; /* Элементы занимают всю ширину поля */
+            padding: 8px;
+            font-size: 1em;
+            box-sizing: border-box; /* Учитывать padding в общей ширине */
+        }
+
+        fieldset button {
+            width: auto; /* Кнопки занимают только необходимую ширину */
+            padding: 10px 20px;
         }
     </style>
 </head>
@@ -43,39 +63,38 @@
 <body>
 <form id="form">
     <ul class="menu">
-        <li><a href="http://test">Home</a></li>
-        <li><a href="http://test">Dev</a></li>
+        <li><a href="http://localhost:8080/">Home</a></li>
+        <li><a href="http://localhost:8080/">Dev</a></li>
     </ul>
 
     <h3>Конструктор чертежей</h3>
     <label for="drawingName">Чертеж:</label>
     <input type="text" id="drawingName" name="drawingName" value="Ворота Optima (заполн.: жалюзи), цельные" style="width: 500px;">
 
-    <div class="svg-container">
-        <svg id="image-placeholder" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
-            <rect width="100%" height="100%" fill="lightgray" />
-            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="gray">
-                SVG Placeholder
-            </text>
-        </svg>
+    <div class="wrapper">
+        <div class="container">
+            <img src="../SlidingOptima001.svg" alt="Sliding Optima 001">
+        </div>
+        <fieldset>
+            <legend>Введите основные параметры</legend>
+            <label for="L">L:</label>
+            <input type="number" id="L" name="L" placeholder="...">
+            <label for="H">H:</label>
+            <input type="number" id="H" name="H" placeholder="...">
+            <label for="pillarCount">Количество столбов:</label>
+            <input type="number" id="pillarCount" name="pillarCount" placeholder="...">
+            <label for="beam">Направляющая балка:</label>
+            <select id="beam" name="beam">
+                <option value="МИКРО 60х55 mm">МИКРО 60х55 mm</option>
+                <option value="ЭКО 60х70 mm">ЭКО 60х70 mm</option>
+                <option value="ЕВРО 90х75 mm">ЕВРО 90х75 mm</option>
+                <option value="МАКС 135х130 mm">МАКС 135х130 mm</option>
+            </select>
+            <button type="button" onclick="processFormDataAndDisplayResults(event)">Рассчитать</button>
+            <button type="button" onclick="downloadDrawingPDF(event)">Скачать PDF</button>
+            <button type="button" onclick="clearForm()">Очистить</button>
+        </fieldset>
     </div>
-
-    <fieldset>
-        <legend> Введите основыне параметры</legend>
-        <label for="L">L:</label><input type="number" id="L" name="L" placeholder="..."><br>
-        <label for="H">H:</label><input type="number" id="H" name="H" placeholder="..."><br>
-        <label for="pillarCount">Количество столбов:</label><input type="number" id="pillarCount" name="pillarCount" placeholder="..."><br>
-        <label for="beam">Направляющая балка:</label>
-        <select id="beam" name="beam">
-            <option value="МИКРО 60х55 mm">МИКРО 60х55 mm</option>
-            <option value="ЭКО 60х70 mm">ЭКО 60х70 mm</option>
-            <option value="ЕВРО 90х75 mm">ЕВРО 90х75 mm</option>
-            <option value="МАКС 135х130 mm">МАКС 135х130 mm</option>
-        </select><br>
-        <button type="button" onclick="processFormDataAndDisplayResults(event)">Рассчитать</button>
-        <button type="button" onclick="downloadDrawingPDF(event)">Скачать PDF</button>
-        <button type="button" onclick="clearForm()">Очистить</button>
-    </fieldset>
 
     <fieldset>
         <legend> Параметры будут рассчитаны автоматически</legend>
@@ -150,41 +169,6 @@
 </form>
 
 <script>
-    // Функция загрузки SVG
-    function loadSVG() {
-        const svgPath = 'UP - prototype_files/SlidingOptima001.svg';
-
-        fetch(svgPath)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Ошибка загрузки SVG: ${response.statusText}`);
-                }
-                return response.text(); // Получаем содержимое SVG как текст
-            })
-            .then(svgContent => {
-                const placeholder = document.getElementById('image-placeholder');
-                const container = placeholder.parentElement;
-
-                // Удаляем placeholder и вставляем SVG
-                container.innerHTML = svgContent;
-            })
-            .catch(error => {
-                console.error('Ошибка при загрузке SVG:', error);
-            });
-    }
-
-    // Запуск функции при загрузке страницы
-    document.addEventListener('DOMContentLoaded', loadSVG);
-
-    function handleFileInput(event) {
-        const file = event.target.files[0];
-        if (file && file.type === "image/svg+xml") {
-            loadSVG(file);
-        } else {
-            alert("Пожалуйста, выберите файл SVG.");
-        }
-    }
-
     function clearForm() {
         // Находим форму по ID
         const form = document.getElementById('form');
