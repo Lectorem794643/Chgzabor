@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UP - prototype</title>
+
+    <style>
+        fieldset {
+            padding: 10px;
+            max-width: fit-content;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea {
+            margin-bottom: 20px;
+        }
+        .svg-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 400px; /* A */
+            height: 300px; /* B */
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            overflow: hidden;
+            position: relative;
+        }
+        .svg-container svg {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+
+<body>
+<form id="form">
+    <ul class="menu">
+        <li><a href="http://test">Home</a></li>
+        <li><a href="http://test">Dev</a></li>
+    </ul>
+
+    <h3>Конструктор чертежей</h3>
+    <label for="drawingName">Чертеж:</label>
+    <input type="text" id="drawingName" name="drawingName" value="Ворота Optima (заполн.: жалюзи), цельные" style="width: 500px;">
+
+    <div class="svg-container">
+        <svg id="image-placeholder" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+            <rect width="100%" height="100%" fill="lightgray" />
+            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="gray">
+                SVG Placeholder
+            </text>
+        </svg>
+    </div>
+
+    <fieldset>
+        <legend> Введите основыне параметры</legend>
+        <label for="L">L:</label><input type="number" id="L" name="L" placeholder="..."><br>
+        <label for="H">H:</label><input type="number" id="H" name="H" placeholder="..."><br>
+        <label for="pillarCount">Количество столбов:</label><input type="number" id="pillarCount" name="pillarCount" placeholder="..."><br>
+        <label for="beam">Направляющая балка:</label>
+        <select id="beam" name="beam">
+            <option value="МИКРО 60х55 mm">МИКРО 60х55 mm</option>
+            <option value="ЭКО 60х70 mm">ЭКО 60х70 mm</option>
+            <option value="ЕВРО 90х75 mm">ЕВРО 90х75 mm</option>
+            <option value="МАКС 135х130 mm">МАКС 135х130 mm</option>
+        </select><br>
+        <button type="button" onclick="processFormDataAndDisplayResults(event)">Рассчитать</button>
+        <button type="button" onclick="downloadDrawingPDF(event)">Скачать PDF</button>
+        <button type="button" onclick="clearForm()">Очистить</button>
+    </fieldset>
+
+    <fieldset>
+        <legend> Параметры будут рассчитаны автоматически</legend>
+        <label for="B">B:</label><input type="number" id="B" name="B" placeholder="..."><br>
+        <label for="E">E:</label><input type="number" id="E" name="E" placeholder="..."><br>
+        <label for="C">C:</label><input type="number" id="C" name="C" placeholder="..."><br>
+        <label for="D">D:</label><input type="number" id="D" name="D" placeholder="..."><br>
+        <label for="A">A:</label><input type="number" id="A" name="A" placeholder="..."><br>
+        <label for="pillarHeight">Высота столбов:</label><input type="number" id="pillarHeight" name="pillarHeight" placeholder="..."><br>
+    </fieldset>
+
+    <fieldset>
+        <legend> Задайте характеристики изделия</legend>
+        <label for="pillarRectangularFlange">Столб на прямоугольном фланце:</label>
+        <select id="pillarRectangularFlange" name="pillarRectangularFlange">
+            <option value="Да">Да</option>
+            <option value="Нет">Нет</option>
+            <option value="_">_</option>
+        </select><br>
+
+        <label for="pillarType">Вид столба:</label>
+        <select id="pillarType" name="pillarType">
+            <option value="60х40">60х40</option>
+            <option value="60х60">60х60</option>
+            <option value="80х80">80х80</option>
+            <option value="100х100">100х100</option>
+            <option value="_">_</option>
+        </select><br>
+
+        <label for="typeFilling">Вид заполнения:</label>
+        <select id="typeFilling" name="typeFilling">
+            <option value="Жалюзи">Жалюзи</option>
+            <option value="Секционка">Секционка</option>
+            <option value="3D сетка">3D сетка</option>
+            <option value="Профлист">Профлист</option>
+            <option value="Штакетник">Штакетник</option>
+            <option value="_">_</option>
+        </select><br>
+
+        <label for="colorRal1">Цвет (RAL):</label>
+        <select id="colorRal1" name="colorRal1">
+            <option value="8017 Коричневый">8017 Коричневый</option>
+            <option value="7024 Темносерый">7024 Темносерый</option>
+            <option value="7004 Светлосерый">7004 Светлосерый</option>
+            <option value="7040 Серый">7040 Серый</option>
+            <option value="_">_</option>
+        </select>
+        <select id="colorRal2" name="colorRal2">
+            <option value="Матовый">Матовый</option>
+            <option value="Глянец">Глянец</option>
+            <option value="Муар">Муар</option>
+            <option value="_">_</option>
+        </select><br>
+    </fieldset>
+
+    <fieldset>
+        <legend> Настройки изделия</legend>
+        <label for="groundIndent">Отсуп от грунта:</label><input type="number" id="groundIndent" name="groundIndent" value="100"><br>
+        <label for="gapAdjustment">Регулировка зазора:</label><input type="number" id="gapAdjustment" name="gapAdjustment" value="200"><br>
+        <label for="pipe">Конструкционная труба:</label>
+        <select id="pipe" name="pipe">
+            <option value="30">30</option>
+            <option value="40">40</option>
+            <option value="60">60</option>
+            <option value="80">80</option>
+        </select><br>
+    </fieldset>
+
+    <label for="comment">Комментарий:</label><br>
+    <textarea id="comment" name="comment" rows="5" placeholder="Добавьте комментарий к заказу" style="resize: none; width: 430px;"></textarea>
+
+</form>
+
+<script>
+    // Функция загрузки SVG
+    function loadSVG() {
+        const svgPath = 'UP - prototype_files/SlidingOptima001.svg';
+
+        fetch(svgPath)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Ошибка загрузки SVG: ${response.statusText}`);
+                }
+                return response.text(); // Получаем содержимое SVG как текст
+            })
+            .then(svgContent => {
+                const placeholder = document.getElementById('image-placeholder');
+                const container = placeholder.parentElement;
+
+                // Удаляем placeholder и вставляем SVG
+                container.innerHTML = svgContent;
+            })
+            .catch(error => {
+                console.error('Ошибка при загрузке SVG:', error);
+            });
+    }
+
+    // Запуск функции при загрузке страницы
+    document.addEventListener('DOMContentLoaded', loadSVG);
+
+    function handleFileInput(event) {
+        const file = event.target.files[0];
+        if (file && file.type === "image/svg+xml") {
+            loadSVG(file);
+        } else {
+            alert("Пожалуйста, выберите файл SVG.");
+        }
+    }
+
+    function clearForm() {
+        // Находим форму по ID
+        const form = document.getElementById('form');
+
+        // Сбрасываем значения всех полей к значениям по умолчанию
+        form.reset();
+    }
+
+    var baseURL = 'http://' + '45.89.110.73' + ':' + '8080';
+
+    // Парсит данные полученные form от пользователя в формат DataModel для отправки в backend
+    function parsingHtmlFormJson() {
+        const form = document.getElementById('form');
+        const elements = form.elements;
+        const values = {};
+
+        // Соответствует HTML форме -------|
+        values.id = "SlidingOptima001"; // |
+        // --------------------------------|
+
+        for (let i = 0; i < elements.length; i++) {
+            const element = elements[i];
+            if (element.name) {
+                values[element.name] = element.value;
+            }
+        }
+
+        return JSON.stringify(values);
+    }
+
+    // Получает данные с формы, отправляет на сервер, обрабатывает ответ и отображает результат на форме.
+    function processFormDataAndDisplayResults(event) {
+        event.preventDefault(); // Браузер не перезагружает страницу
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", baseURL + "/processData", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.send(parsingHtmlFormJson());
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    Object.keys(response).forEach(function (key) {
+                        var element = document.getElementsByName(key)[0];
+                        if (element) {
+                            if (element.type === 'number') {
+                                element.value = Number(response[key]);
+                            } else {
+                                element.value = response[key];
+                            }
+                        }
+                    });
+                } else {
+                    alert("Error: " + xhr.status);
+                    console.error("Error: " + xhr.status);
+                }
+            }
+        }
+    }
+
+    // Генерирует и скачивает PDF файл с чертежом из конструктора.
+    function downloadDrawingPDF(event) {
+        event.preventDefault(); // Браузер не перезагружает страницу
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', baseURL + '/generatePDF', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+
+        xhr.responseType = 'blob';
+
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                var blob = xhr.response;
+                var url = window.URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = document.getElementById("drawingName").value + '.pdf';
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+            } else {
+                alert('Произошла ошибка при загрузке PDF файла');
+                console.error('Произошла ошибка при загрузке PDF файла');
+            }
+        };
+
+        xhr.onerror = function () {
+            alert('Произошла ошибка при выполнении запроса');
+            console.error('Произошла ошибка при выполнении запроса');
+        };
+
+        xhr.send(parsingHtmlFormJson());
+    }
+</script>
+
+</body></html>

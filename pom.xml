@@ -30,6 +30,8 @@
         <module>Backend/Gateway</module>
         <module>Backend/Model</module>
         <module>Backend/Pdf</module>
+
+        <module>Frontend/Front</module>
     </modules>
 
     <!-- Управление зависимостями -->
