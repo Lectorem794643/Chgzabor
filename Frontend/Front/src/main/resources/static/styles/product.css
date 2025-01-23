@@ -1,0 +1,56 @@
+/* 1920 × 1080 */
+/* 1920 / 3 = 640 */
+
+.wrapper {
+    display: flex;
+    align-items: flex-start; /* Выравнивание по началу по вертикали */
+    gap: 20px; /* Отступ между блоками */
+}
+
+.container {
+    width: 1280px;
+    height: 400px;
+    background-color: #d3d3d3; /* Серый цвет */
+    display: flex;
+    justify-content: center; /* Центрирование изображения по горизонтали */
+    align-items: center;    /* Центрирование изображения по вертикали */
+}
+
+.container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Сохранение пропорций изображения */
+}
+
+fieldset {
+    width: 640px; /* Ширина блока fieldset */
+    padding: 20px; /* Внутренний отступ для поля */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Лёгкая тень для стиля */
+    background-color: #f9f9f9; /* Цвет фона для контраста */
+}
+
+fieldset legend {
+    font-weight: bold;
+}
+
+fieldset label {
+    display: inline-block; /* Выровнять label на одной строке с input */
+    width: 180px; /* Ширина label, чтобы они не выходили за пределы */
+    margin-bottom: 10px; /* Отступ снизу */
+    font-weight: bold;
+}
+
+fieldset input, fieldset select {
+    display: inline-block;
+    width: 200px; /* Установить ширину для input */
+    margin-bottom: 10px; /* Отступ снизу */
+}
+
+fieldset select {
+    width: 210px; /* Немного больше для select */
+}
+
+fieldset button {
+    width: auto; /* Кнопки занимают только необходимую ширину */
+    padding: 10px 20px;
+}
