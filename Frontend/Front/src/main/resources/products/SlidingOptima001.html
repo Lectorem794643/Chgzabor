@@ -14,10 +14,14 @@
         <li><a href="http://localhost:8080/">Dev</a></li>
     </ul>
 
-    <label for="drawingName">Чертеж:</label>
-    <input type="text" id="drawingName" name="drawingName" value="Ворота Optima (заполн.: жалюзи), цельные" style="width: 500px;">
-    <label for="orderNumber">Номер заказа:</label>
-    <input type="text" id="orderNumber" name="orderNumber" value="" style="width: 200px;">
+    <div class="form-group">
+        <label for="drawingName">Чертеж:</label>
+        <input type="text" id="drawingName" name="drawingName" value="Ворота Optima (заполн.: жалюзи), цельные">
+
+        <label for="orderNumber">Номер заказа:</label>
+        <input type="text" id="orderNumber" name="orderNumber" value="">
+    </div>
+
 
     <div class="wrapper">
         <div class="container">
@@ -35,9 +39,9 @@
                 <option value="ЕВРО 90х75 mm">ЕВРО 90х75 mm</option>
                 <option value="МАКС 135х130 mm">МАКС 135х130 mm</option>
             </select><br>
-            <button type="button" onclick="processFormDataAndDisplayResults(event)">Рассчитать</button>
-            <button type="button" onclick="downloadDrawingPDF(event)">Скачать PDF</button>
-            <button type="button" onclick="clearForm()">Очистить</button>
+            <button type="button" class="yellow" onclick="processFormDataAndDisplayResults(event)">Рассчитать</button>
+            <button type="button" class="yellow" onclick="downloadDrawingPDF(event)">Скачать PDF</button>
+            <button type="button" class="gray"   onclick="clearForm()">Очистить</button>
         </fieldset>
     </div>
 
@@ -48,6 +52,7 @@
             <label for="E">E:</label><input type="number" id="E" name="E" placeholder="..."><br>
             <label for="C">C:</label><input type="number" id="C" name="C" placeholder="..."><br>
             <label for="D">D:</label><input type="number" id="D" name="D" placeholder="..."><br>
+
             <label for="A">A:</label><input type="number" id="A" name="A" placeholder="..."><br>
             <label for="pillarHeight">Высота столбов:</label><input type="number" id="pillarHeight" name="pillarHeight" placeholder="..."><br>
         </fieldset>
