@@ -1,0 +1,40 @@
+/* fields.css */
+
+/* Ширина для отдельных полей можно задать более конкретно, если нужно */
+#drawingName {
+    width: 500px; /* Фиксированная ширина для поля "Чертеж" */
+}
+
+#orderNumber {
+    width: 200px; /* Фиксированная ширина для поля "Номер заказа" */
+}
+
+input, select {
+    font-family: 'JetBrainsMono', sans-serif;
+    font-size: 14px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 100%;
+}
+
+.form-group {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.form-group input, .form-group select {
+    flex: 1;
+    min-width: 200px;
+}

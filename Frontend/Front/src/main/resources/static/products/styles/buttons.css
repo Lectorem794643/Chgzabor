@@ -1,0 +1,32 @@
+/* buttons.css */
+
+/* Общий стиль для кнопок */
+fieldset button {
+    width: auto;
+    padding: 10px 20px;
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Стиль для серой кнопки */
+button.gray {
+    background-color: #7A7D86;
+    color: #FFC300;
+}
+
+button.gray:hover {
+    color: #FF7F00;
+}
+
+/* Стиль для желтой кнопки */
+button.yellow {
+    background-color: #FFC300;
+    color: #1E1E1E;
+}
+
+button.yellow:hover {
+    color: #7A7D86;
+}

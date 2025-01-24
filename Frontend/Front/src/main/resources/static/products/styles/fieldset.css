@@ -1,0 +1,33 @@
+/* fieldset.css */
+
+/* Общий стиль для fieldset */
+fieldset {
+    width: 640px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+fieldset legend {
+    font-weight: bold;
+}
+
+fieldset label {
+    display: inline-block;
+    width: 200px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+fieldset input, fieldset select {
+    display: inline-block;
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+/* Wrapper для fieldset */
+.wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}

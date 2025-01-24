@@ -1,0 +1,15 @@
+/* font.css */
+
+/* Подключение шрифта */
+@font-face {
+    font-family: 'JetBrainsMono';
+    src: url('../../fonts/JetBrainsMono-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Применение шрифта ко всем элементам */
+body, fieldset label, input, select {
+    font-family: 'JetBrainsMono', sans-serif;
+    font-size: 14px;
+}

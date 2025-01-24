@@ -16,7 +16,7 @@ import java.nio.charset.StandardCharsets;
 public class ProductController {
     @GetMapping("/SlidingOptima001")
     public void showProductPage(HttpServletResponse response) throws IOException {
-        var resource = new ClassPathResource("products/SlidingOptima001.html");
+        var resource = new ClassPathResource("static/products/SlidingOptima001.html");
         response.setContentType(MediaType.TEXT_HTML_VALUE);
         response.setCharacterEncoding(StandardCharsets.UTF_8.name());
         StreamUtils.copy(resource.getInputStream(), response.getOutputStream());
