@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/products/styles/image.css">
     <link rel="stylesheet" href="/products/styles/fieldset.css">
     <link rel="stylesheet" href="/products/styles/buttons.css">
+    <link rel="stylesheet" href="/products/styles/textarea.css">
 </head>
 <body>
 <form id="form">
@@ -19,13 +20,15 @@
         <li><a href="http://localhost:8080/">Dev</a></li>
     </ul>
 
-    <div class="form-group">
-        <label for="drawingName">Чертеж:</label>
-        <input type="text" id="drawingName" name="drawingName" value="Ворота Optima (заполн.: жалюзи), цельные">
-
-        <label for="orderNumber">Номер заказа:</label>
-        <input type="text" id="orderNumber" name="orderNumber" value="">
+    <div class="form-firstrow">
+        <div class="form-group">
+            <label for="drawingName">Чертеж:</label>
+            <input type="text" id="drawingName" name="drawingName" value="Ворота Optima (заполн.: жалюзи), цельные">
+            <label for="orderNumber">Номер заказа:</label>
+            <input type="text" id="orderNumber" name="orderNumber" value="">
+        </div>
     </div>
+
 
 
     <div class="wrapper">
@@ -90,7 +93,7 @@
                 <option value="_">_</option>
             </select><br>
 
-            <label for="colorRal1">Цвет (RAL):</label>
+            <label for="colorRal1">Цвет-1 (RAL):</label>
             <select id="colorRal1" name="colorRal1">
                 <option value="8017 Коричневый">8017 Коричневый</option>
                 <option value="7024 Темносерый">7024 Темносерый</option>
@@ -98,6 +101,7 @@
                 <option value="7040 Серый">7040 Серый</option>
                 <option value="_">_</option>
             </select>
+            <label for="colorRal2">Цвет-2 (RAL):</label>
             <select id="colorRal2" name="colorRal2">
                 <option value="Матовый">Матовый</option>
                 <option value="Глянец">Глянец</option>
@@ -120,8 +124,14 @@
         </fieldset>
     </div>
 
-    <label for="comment">Комментарий:</label><br>
-    <textarea id="comment" name="comment" rows="5" placeholder="Добавьте комментарий к заказу" style="resize: none; width: 430px;"></textarea>
+    <div class="comment-wrapper">
+        <fieldset class="comment-fieldset">
+            <legend>Комментарий:</legend>
+            <textarea id="comment" name="comment" placeholder="Добавьте комментарий к заказу"></textarea>
+        </fieldset>
+    </div>
+
+
 
 </form>
 <script src="/products/scripts/product.js"></script>

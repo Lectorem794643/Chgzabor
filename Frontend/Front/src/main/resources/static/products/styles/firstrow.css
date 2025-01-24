@@ -1,0 +1,31 @@
+/* Стиль для первой строки формы */
+.form-firstrow {
+    display: inline-flex; /* Форматирование под содержимое */
+    align-items: center; /* Выравнивание по вертикали */
+    gap: 20px; /* Отступ между элементами */
+    margin-bottom: 20px; /* Отступ снизу */
+    padding-right: 10px; /* Дополнительное пространство справа */
+}
+
+/* Размеры для отдельных полей */
+#drawingName {
+    width: 500px; /* Фиксированная ширина для поля "Чертеж" */
+}
+
+#orderNumber {
+    width: 200px; /* Фиксированная ширина для поля "Номер заказа" */
+}
+
+/* Общие стили для label и input */
+.form-firstrow label {
+    font-weight: bold;
+    margin-right: 10px; /* Отступ между label и input */
+}
+
+.form-firstrow input {
+    font-family: 'JetBrainsMono', sans-serif;
+    font-size: 14px;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}

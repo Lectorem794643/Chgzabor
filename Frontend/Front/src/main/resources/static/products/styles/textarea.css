@@ -1,0 +1,42 @@
+/* Специфичный стиль для блока комментария */
+.comment-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.comment-fieldset {
+    width: 500px;
+    padding: 20px; /* Внутренние отступы */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Легкая тень */
+    background-color: #f9f9f9; /* Цвет фона для контраста */
+    box-sizing: border-box; /* Учитываем padding в общей ширине */
+}
+
+.comment-fieldset legend {
+    font-weight: bold; /* Жирный шрифт для заголовка */
+    font-size: 16px; /* Размер шрифта */
+    margin-bottom: 10px; /* Отступ снизу */
+}
+
+/* Стиль для textarea */
+.comment-fieldset textarea {
+    width: calc(100% - 30px); /* Ширина textarea с учётом отступов (слева и справа) */
+    height: 120px; /* Фиксированная высота для textarea */
+    padding: 10px; /* Отступы внутри textarea */
+    border: 1px solid #ccc; /* Рамка */
+    border-radius: 3px; /* Закругленные углы */
+    font-family: 'JetBrainsMono', sans-serif; /* Шрифт */
+    font-size: 14px; /* Размер шрифта */
+    resize: none; /* Запрещаем изменение размера */
+    overflow: auto; /* Ползунок появится, если текст слишком длинный */
+    box-sizing: border-box; /* Учитываем padding в общей ширине */
+}
+
+/* Фокус на textarea */
+.comment-fieldset textarea:focus {
+    outline: none;
+    border-color: #7A7D86; /* Цвет рамки при фокусе */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Легкая тень */
+}
