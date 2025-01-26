@@ -1,0 +1,33 @@
+/* Меню названия чертежа и номера заказа */
+.component-2 {
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    padding-right: 10px;
+}
+
+/* Стили элемента формы */
+.component-2-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Стили для полей ввода внутри строки формы */
+.component-2 input {
+    font-family: 'JetBrainsMono', sans-serif;
+    font-size: 14px;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+
+/* Индивидуальные размеры полей */
+#drawingName {
+    width: 500px; /* Фиксированная ширина для поля "Чертеж" */
+}
+
+#orderNumber {
+    width: 200px; /* Фиксированная ширина для поля "Номер заказа" */
+}

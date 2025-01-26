@@ -1,138 +1,193 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UP - prototype</title>
 
     <link rel="stylesheet" href="/products/styles/font.css">
-    <link rel="stylesheet" href="/products/styles/menu.css">
-    <link rel="stylesheet" href="/products/styles/fields.css">
-    <link rel="stylesheet" href="/products/styles/image.css">
-    <link rel="stylesheet" href="/products/styles/fieldset.css">
-    <link rel="stylesheet" href="/products/styles/buttons.css">
-    <link rel="stylesheet" href="/products/styles/textarea.css">
+
+    <link rel="stylesheet" href="/products/components/component-1.css">
+    <link rel="stylesheet" href="/products/components/component-2.css">
+    <link rel="stylesheet" href="/products/components/component-3.css">
+    <link rel="stylesheet" href="/products/components/component-4.css">
+    <link rel="stylesheet" href="/products/components/component-5.css">
+    <link rel="stylesheet" href="/products/components/centered-container.css">
+
 </head>
 <body>
 <form id="form">
-    <ul class="menu">
+
+    <ul class="component-1">
         <li><a href="http://localhost:8080/">Home</a></li>
         <li><a href="http://localhost:8080/">Dev</a></li>
     </ul>
 
-    <div class="form-firstrow">
-        <div class="form-group">
-            <label for="drawingName">Чертеж:</label>
-            <input type="text" id="drawingName" name="drawingName" value="Ворота Optima (заполн.: жалюзи), цельные">
-            <label for="orderNumber">Номер заказа:</label>
-            <input type="text" id="orderNumber" name="orderNumber" value="">
+    <div class="centered-container">
+        <div class="component-2">
+            <div class="component-2-item">
+                <label for="drawingName">Чертеж:</label>
+                <input type="text" id="drawingName" name="drawingName" value="Ворота Optima (заполн.: жалюзи), цельные">
+            </div>
+            <div class="component-2-item">
+                <label for="orderNumber">Номер заказа:</label>
+                <input type="text" id="orderNumber" name="orderNumber" value="">
+            </div>
+        </div>
+
+        <div class="component-3">
+            <div class="image-container">
+                <img src="/products/svg/SlidingOptima001.svg" alt="Sliding Optima 001">
+            </div>
+            <fieldset class="component-3-fieldset">
+                <legend>Введите основные параметры</legend>
+
+                <div class="component-3-row">
+                    <label for="L">L:</label>
+                    <input type="number" id="L" name="L" placeholder="...">
+                </div>
+                <div class="component-3-row">
+                    <label for="H">H:</label>
+                    <input type="number" id="H" name="H" placeholder="...">
+                </div>
+                <div class="component-3-row">
+                    <label for="pillarCount">Количество столбов:</label>
+                    <input type="number" id="pillarCount" name="pillarCount" placeholder="...">
+                </div>
+                <div class="component-3-row">
+                    <label for="beam">Направляющая балка:</label>
+                    <select id="beam" name="beam">
+                        <option value="МИКРО 60х55 mm">МИКРО 60х55 mm</option>
+                        <option value="ЭКО 60х70 mm">ЭКО 60х70 mm</option>
+                        <option value="ЕВРО 90х75 mm">ЕВРО 90х75 mm</option>
+                        <option value="МАКС 135х130 mm">МАКС 135х130 mm</option>
+                    </select>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="button yellow" onclick="processFormDataAndDisplayResults(event)">
+                        Рассчитать
+                    </button>
+                    <button type="button" class="button yellow" onclick="downloadDrawingPDF(event)">Скачать PDF</button>
+                    <button type="button" class="button gray" onclick="clearForm()">Очистить</button>
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="component-4">
+            <fieldset class="component-4-fieldset">
+                <legend>Параметры будут рассчитаны автоматически</legend>
+
+                <div class="component-4-row">
+                    <label for="B">B:</label>
+                    <input type="number" id="B" name="B" placeholder="..."><br>
+                </div>
+                <div class="component-4-row">
+                    <label for="E">E:</label>
+                    <input type="number" id="E" name="E" placeholder="..."><br>
+                </div>
+                <div class="component-4-row">
+                    <label for="C">C:</label>
+                    <input type="number" id="C" name="C" placeholder="..."><br>
+                </div>
+                <div class="component-4-row">
+                    <label for="D">D:</label>
+                    <input type="number" id="D" name="D" placeholder="..."><br>
+                </div>
+                <div class="component-4-row">
+                    <label for="A">A:</label>
+                    <input type="number" id="A" name="A" placeholder="..."><br>
+                </div>
+                <div class="component-4-row">
+                    <label for="pillarHeight">Высота столбов:</label>
+                    <input type="number" id="pillarHeight" name="pillarHeight" placeholder="..."><br>
+                </div>
+            </fieldset>
+
+            <fieldset class="component-4-fieldset">
+                <legend>Задайте характеристики изделия</legend>
+                <div class="component-4-row">
+                    <label for="pillarRectangularFlange">Столб на прямоугольном фланце:</label>
+                    <select id="pillarRectangularFlange" name="pillarRectangularFlange">
+                        <option value="Да">Да</option>
+                        <option value="Нет">Нет</option>
+                        <option value="_">_</option>
+                    </select><br>
+                </div>
+                <div class="component-4-row">
+                    <label for="pillarType">Вид столба:</label>
+                    <select id="pillarType" name="pillarType">
+                        <option value="60х40">60х40</option>
+                        <option value="60х60">60х60</option>
+                        <option value="80х80">80х80</option>
+                        <option value="100х100">100х100</option>
+                        <option value="_">_</option>
+                    </select><br>
+                </div>
+                <div class="component-4-row">
+                    <label for="typeFilling">Вид заполнения:</label>
+                    <select id="typeFilling" name="typeFilling">
+                        <option value="Жалюзи">Жалюзи</option>
+                        <option value="Секционка">Секционка</option>
+                        <option value="3D сетка">3D сетка</option>
+                        <option value="Профлист">Профлист</option>
+                        <option value="Штакетник">Штакетник</option>
+                        <option value="_">_</option>
+                    </select><br>
+                </div>
+                <div class="component-4-row">
+                    <label for="colorRal1">Цвет-1 (RAL):</label>
+                    <select id="colorRal1" name="colorRal1">
+                        <option value="8017 Коричневый">8017 Коричневый</option>
+                        <option value="7024 Темносерый">7024 Темносерый</option>
+                        <option value="7004 Светлосерый">7004 Светлосерый</option>
+                        <option value="7040 Серый">7040 Серый</option>
+                        <option value="_">_</option>
+                    </select>
+                </div>
+                <div class="component-4-row">
+                    <label for="colorRal2">Цвет-2 (RAL):</label>
+                    <select id="colorRal2" name="colorRal2">
+                        <option value="Матовый">Матовый</option>
+                        <option value="Глянец">Глянец</option>
+                        <option value="Муар">Муар</option>
+                        <option value="_">_</option>
+                    </select><br>
+                </div>
+            </fieldset>
+
+            <fieldset class="component-4-fieldset">
+                <legend>Настройки изделия</legend>
+                <div class="component-4-row">
+                    <label for="groundIndent">Отступ от грунта:</label>
+                    <input type="number" id="groundIndent" name="groundIndent" value="100"><br>
+                </div>
+                <div class="component-4-row">
+                    <label for="gapAdjustment">Регулировка зазора:</label>
+                    <input type="number" id="gapAdjustment" name="gapAdjustment" value="200"><br>
+                </div>
+                <div class="component-4-row">
+                    <label for="pipe">Конструкционная труба:</label>
+                    <select id="pipe" name="pipe">
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="60">60</option>
+                        <option value="80">80</option>
+                    </select><br>
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="component-5">
+            <fieldset class="component-5-fieldset">
+                <legend>Комментарий:</legend>
+                <textarea id="comment" name="comment" placeholder="Добавьте комментарий к заказу"></textarea>
+            </fieldset>
         </div>
     </div>
-
-
-
-    <div class="wrapper">
-        <div class="container">
-            <img src="/products/svg/SlidingOptima001.svg" alt="Sliding Optima 001">
-        </div>
-        <fieldset>
-            <legend>Введите основные параметры</legend>
-            <label for="L">L:</label><input type="number" id="L" name="L" placeholder="..."><br>
-            <label for="H">H:</label><input type="number" id="H" name="H" placeholder="..."><br>
-            <label for="pillarCount">Количество столбов:</label><input type="number" id="pillarCount" name="pillarCount" placeholder="..."><br>
-            <label for="beam">Направляющая балка:</label>
-            <select id="beam" name="beam">
-                <option value="МИКРО 60х55 mm">МИКРО 60х55 mm</option>
-                <option value="ЭКО 60х70 mm">ЭКО 60х70 mm</option>
-                <option value="ЕВРО 90х75 mm">ЕВРО 90х75 mm</option>
-                <option value="МАКС 135х130 mm">МАКС 135х130 mm</option>
-            </select><br>
-            <button type="button" class="yellow" onclick="processFormDataAndDisplayResults(event)">Рассчитать</button>
-            <button type="button" class="yellow" onclick="downloadDrawingPDF(event)">Скачать PDF</button>
-            <button type="button" class="gray"   onclick="clearForm()">Очистить</button>
-        </fieldset>
-    </div>
-
-    <div class="wrapper">
-        <fieldset>
-            <legend> Параметры будут рассчитаны автоматически</legend>
-            <label for="B">B:</label><input type="number" id="B" name="B" placeholder="..."><br>
-            <label for="E">E:</label><input type="number" id="E" name="E" placeholder="..."><br>
-            <label for="C">C:</label><input type="number" id="C" name="C" placeholder="..."><br>
-            <label for="D">D:</label><input type="number" id="D" name="D" placeholder="..."><br>
-
-            <label for="A">A:</label><input type="number" id="A" name="A" placeholder="..."><br>
-            <label for="pillarHeight">Высота столбов:</label><input type="number" id="pillarHeight" name="pillarHeight" placeholder="..."><br>
-        </fieldset>
-
-        <fieldset>
-            <legend> Задайте характеристики изделия</legend>
-            <label for="pillarRectangularFlange">Столб на прямоугольном фланце:</label>
-            <select id="pillarRectangularFlange" name="pillarRectangularFlange">
-                <option value="Да">Да</option>
-                <option value="Нет">Нет</option>
-                <option value="_">_</option>
-            </select><br>
-
-            <label for="pillarType">Вид столба:</label>
-            <select id="pillarType" name="pillarType">
-                <option value="60х40">60х40</option>
-                <option value="60х60">60х60</option>
-                <option value="80х80">80х80</option>
-                <option value="100х100">100х100</option>
-                <option value="_">_</option>
-            </select><br>
-
-            <label for="typeFilling">Вид заполнения:</label>
-            <select id="typeFilling" name="typeFilling">
-                <option value="Жалюзи">Жалюзи</option>
-                <option value="Секционка">Секционка</option>
-                <option value="3D сетка">3D сетка</option>
-                <option value="Профлист">Профлист</option>
-                <option value="Штакетник">Штакетник</option>
-                <option value="_">_</option>
-            </select><br>
-
-            <label for="colorRal1">Цвет-1 (RAL):</label>
-            <select id="colorRal1" name="colorRal1">
-                <option value="8017 Коричневый">8017 Коричневый</option>
-                <option value="7024 Темносерый">7024 Темносерый</option>
-                <option value="7004 Светлосерый">7004 Светлосерый</option>
-                <option value="7040 Серый">7040 Серый</option>
-                <option value="_">_</option>
-            </select>
-            <label for="colorRal2">Цвет-2 (RAL):</label>
-            <select id="colorRal2" name="colorRal2">
-                <option value="Матовый">Матовый</option>
-                <option value="Глянец">Глянец</option>
-                <option value="Муар">Муар</option>
-                <option value="_">_</option>
-            </select><br>
-        </fieldset>
-
-        <fieldset>
-            <legend> Настройки изделия</legend>
-            <label for="groundIndent">Отсуп от грунта:</label><input type="number" id="groundIndent" name="groundIndent" value="100"><br>
-            <label for="gapAdjustment">Регулировка зазора:</label><input type="number" id="gapAdjustment" name="gapAdjustment" value="200"><br>
-            <label for="pipe">Конструкционная труба:</label>
-            <select id="pipe" name="pipe">
-                <option value="30">30</option>
-                <option value="40">40</option>
-                <option value="60">60</option>
-                <option value="80">80</option>
-            </select><br>
-        </fieldset>
-    </div>
-
-    <div class="comment-wrapper">
-        <fieldset class="comment-fieldset">
-            <legend>Комментарий:</legend>
-            <textarea id="comment" name="comment" placeholder="Добавьте комментарий к заказу"></textarea>
-        </fieldset>
-    </div>
-
-
-
 </form>
 <script src="/products/scripts/product.js"></script>
-</body></html>
+</body>
+</html>

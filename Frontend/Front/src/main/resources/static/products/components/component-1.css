@@ -1,7 +1,5 @@
-/* menu.css */
-
 /* Меню навигации */
-.menu {
+.component-1 {
     display: flex;
     justify-content: start;
     align-items: center;
@@ -15,12 +13,12 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.menu li {
+.component-1 li {
     list-style: none;
     margin-right: 20px;
 }
 
-.menu li a {
+.component-1 li a {
     text-decoration: none;
     color: #FFC300;
     font-weight: bold;
@@ -28,6 +26,6 @@
     transition: color 0.3s;
 }
 
-.menu li a:hover {
+.component-1 li a:hover {
     color: #ffa500;
 }
