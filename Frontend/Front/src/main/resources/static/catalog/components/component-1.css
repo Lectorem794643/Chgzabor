@@ -1,0 +1,31 @@
+/* Меню навигации */
+.component-1 {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    background-color: #7A7D86;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.component-1 li {
+    list-style: none;
+    margin-right: 20px;
+}
+
+.component-1 li a {
+    text-decoration: none;
+    color: #FFC300;
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.component-1 li a:hover {
+    color: #ffa500;
+}

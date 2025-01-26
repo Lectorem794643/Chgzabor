@@ -1,0 +1,76 @@
+/* Убираем стандартное оформление списка */
+ul {
+    list-style: none;
+    padding-left: 20px;
+}
+
+h4 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+li {
+    margin-bottom: 5px; /* Уменьшаем расстояние между элементами */
+    font-size: 1rem;
+    color: #555;
+}
+
+a {
+    text-decoration: none;
+    color: #007BFF;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+/* Стили для вложенных списков */
+ul ul {
+    display: none; /* Скрываем подкаталоги по умолчанию */
+    margin-top: 10px;
+}
+
+ul ul li {
+    font-size: 0.95rem;
+}
+
+ul ul ul {
+    margin-top: 5px;
+    padding-left: 20px;
+}
+
+ul ul a {
+    font-size: 0.9rem;
+    color: #333;
+}
+
+ul ul a:hover {
+    color: #0056b3;
+}
+
+/* Кнопки для сворачивания/разворачивания подкаталогов */
+.toggle-btn {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    color: #333;
+    cursor: pointer;
+    text-align: left;
+    padding: 0;
+}
+
+.toggle-btn:hover {
+    color: #0056b3;
+}
+
+/* Анимация для появления подкаталогов */
+ul.sub-list {
+    transition: max-height 0.3s ease-out;
+    overflow: hidden;
+}
+
+ul.sub-list.open {
+    display: block;
+}

@@ -14,7 +14,7 @@ import java.nio.charset.StandardCharsets;
 public class MainController {
     @GetMapping("/")
     public void showHomePage(HttpServletResponse response) throws IOException {
-        var resource = new ClassPathResource("mainPage/catalog.html");
+        var resource = new ClassPathResource("static/catalog/catalog.html");
         response.setContentType(MediaType.TEXT_HTML_VALUE);
         response.setCharacterEncoding(StandardCharsets.UTF_8.name());
         StreamUtils.copy(resource.getInputStream(), response.getOutputStream());
@@ -22,7 +22,7 @@ public class MainController {
 
     @GetMapping("/catalog")
     public void showCatalogPage(HttpServletResponse response) throws IOException {
-        var resource = new ClassPathResource("mainPage/catalog.html");
+        var resource = new ClassPathResource("static/catalog/catalog.html");
         response.setContentType(MediaType.TEXT_HTML_VALUE);
         response.setCharacterEncoding(StandardCharsets.UTF_8.name());
         StreamUtils.copy(resource.getInputStream(), response.getOutputStream());
