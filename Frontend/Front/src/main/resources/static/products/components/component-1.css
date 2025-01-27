@@ -1,10 +1,16 @@
 /* Меню навигации */
+ul.component-1 {
+    margin: 0; /* Убираем внешний отступ */
+    padding: 0; /* Убираем внутренний отступ */
+}
+
 .component-1 {
     display: flex;
     justify-content: start;
-    align-items: center;
+    align-items: center; /* Центрируем элементы по вертикали */
     background-color: #7A7D86;
-    padding: 10px 20px;
+    height: 40px; /* Задаем фиксированную высоту */
+    padding: 0 20px; /* Оставляем только горизонтальный отступ */
     margin-bottom: 20px;
     top: 0;
     left: 0;
@@ -15,7 +21,7 @@
 
 .component-1 li {
     list-style: none;
-    margin-right: 20px;
+    padding-left: 20px; /* Добавляем отступ от левого края для внутренних элементов */
 }
 
 .component-1 li a {
@@ -24,6 +30,7 @@
     font-weight: bold;
     font-size: 16px;
     transition: color 0.3s;
+    line-height: 60px; /* Совпадает с высотой меню для выравнивания текста */
 }
 
 .component-1 li a:hover {

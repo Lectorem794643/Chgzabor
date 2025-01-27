@@ -1,0 +1,17 @@
+/* Подключаем шрифт из текущей папки */
+@font-face {
+    font-family: 'JetBrainsMono-Regular'; /* Имя шрифта */
+    src: url('./JetBrainsMono-Regular.ttf') format('woff2'); /* Формат WOFF2 */
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Применяем шрифт ко всей странице */
+body {
+    font-family: 'JetBrainsMono-Regular', Arial, sans-serif; /* Основной шрифт + запасные */
+    font-size: 14px; /* Базовый размер текста */
+    line-height: 1.5; /* Интерлиньяж для удобочитаемости */
+    color: #333; /* Цвет текста */
+    margin: 0; /* Сбрасываем отступы */
+    padding: 0;
+}
