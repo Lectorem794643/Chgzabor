@@ -28,9 +28,17 @@ public class MainController {
         StreamUtils.copy(resource.getInputStream(), response.getOutputStream());
     }
 
+    @GetMapping("/manual")
+    public void showManualPage(HttpServletResponse response) throws IOException {
+        var resource = new ClassPathResource("static/manual/manual.html");
+        response.setContentType(MediaType.TEXT_HTML_VALUE);
+        response.setCharacterEncoding(StandardCharsets.UTF_8.name());
+        StreamUtils.copy(resource.getInputStream(), response.getOutputStream());
+    }
+
     @GetMapping("/error-page")
     public void showErrorPage(HttpServletResponse response) throws IOException {
-        var resource = new ClassPathResource("mainPage/error.html");
+        var resource = new ClassPathResource("static/error/error.html");
         response.setContentType(MediaType.TEXT_HTML_VALUE);
         response.setCharacterEncoding(StandardCharsets.UTF_8.name());
         StreamUtils.copy(resource.getInputStream(), response.getOutputStream());

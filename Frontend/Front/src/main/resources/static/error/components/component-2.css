@@ -1,0 +1,40 @@
+/* Страница 404 */
+.component-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 60px); /* Высота экрана минус высота меню */
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Контейнер для изображения */
+.image-container {
+    width: 400px; /* Жестко заданная ширина */
+    height: 400px; /* Жестко заданная высота */
+    background-color: white; /* Белый фон за картинкой */
+    display: flex; /* Центровка изображения */
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Обрезка содержимого, выходящего за границы */
+    box-sizing: border-box;
+    padding: 10px; /* Внутренние отступы */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень */
+    margin-bottom: 20px; /* Отступ под изображением */
+}
+
+/* Стиль изображения */
+.image-container img {
+    max-width: 100%; /* Масштабирование по ширине контейнера */
+    max-height: 100%; /* Масштабирование по высоте контейнера */
+    object-fit: contain; /* Подгонка изображения */
+}
+
+/* Сообщение о 404 */
+.not-found-message {
+    font-size: 18px;
+    color: #333;
+    margin: 0;
+}

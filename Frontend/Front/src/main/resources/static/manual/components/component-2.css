@@ -1,0 +1,54 @@
+/* Контейнер для инструкции */
+.instruction-container {
+    width: 800px; /* Фиксированная ширина блока */
+    margin: 0 auto; /* Центрирование блока по горизонтали */
+    padding: 20px; /* Внутренние отступы */
+    box-sizing: border-box; /* Учитываем отступы в общей ширине */
+    text-align: center; /* Центровка текста по горизонтали */
+}
+
+/* Подзаголовок */
+.instruction-subheading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px; /* Отступ снизу */
+}
+
+/* Контейнер для основного текста и кодов */
+.instruction-content {
+    display: flex;
+    flex-direction: column; /* Размещение элементов по вертикали */
+    align-items: flex-start; /* Выравнивание по левому краю */
+}
+
+/* Коды (подтемы) слева */
+.instruction-code {
+    font-weight: bold; /* Жирный шрифт */
+    font-size: 16px; /* Немного уменьшенный размер шрифта */
+    text-align: left; /* Выравнивание по левому краю */
+}
+
+.instruction-code p {
+    margin: 5px 0; /* Отступы между подтемами */
+}
+
+/* Основной текст */
+.instruction-text {
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: justify; /* Выравнивание по ширине */
+    margin-top: 0; /* Убираем верхний отступ */
+    margin-bottom: 20px; /* Отступ снизу */
+}
+
+/* Картинка */
+.instruction-image {
+    width: 100%; /* Картинка на всю ширину контейнера */
+    height: auto; /* Сохраняем пропорции изображения */
+}
+
+.instruction-image img {
+    width: 100%; /* Картинка будет растягиваться по ширине блока */
+    height: auto; /* Сохраняет пропорции */
+    object-fit: cover; /* При необходимости картинка будет подгоняться */
+}
