@@ -6,8 +6,6 @@ function clearForm() {
     form.reset();
 }
 
-var baseURL = 'http://' + '45.89.110.73' + ':' + '8080';
-
 // Парсит данные полученные form от пользователя в формат DataModel для отправки в backend
 function parsingHtmlFormJson() {
     const form = document.getElementById('form');
@@ -33,7 +31,7 @@ function processFormDataAndDisplayResults(event) {
     event.preventDefault(); // Браузер не перезагружает страницу
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", baseURL + "/processData", true);
+    xhr.open("POST", "http://localhost:8000/api/SlidingOptima001/calculating", true);
     xhr.setRequestHeader("Content-Type", "application/json");
 
     xhr.send(parsingHtmlFormJson());
@@ -64,7 +62,7 @@ function downloadDrawingPDF(event) {
     event.preventDefault(); // Браузер не перезагружает страницу
 
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', baseURL + '/generatePDF', true);
+    xhr.open('POST', "http://localhost:8000/api/SlidingOptima001/pdf", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
 
     xhr.responseType = 'blob';

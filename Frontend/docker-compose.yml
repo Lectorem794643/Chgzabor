@@ -1,19 +1,15 @@
 services:
   front:
     build:
-      context: ./front
+      context: front
       dockerfile: Dockerfile
     container_name: front
     ports:
-      - 8080:8080
+      - 8001:8080
     networks:
       - app-network
     develop:
       watch:
         - action: rebuild
-          target: ./front/target/Front-0.0.1.jar
-          path: ./front/target
-
-networks:
-  app-network:
-    driver: bridge
+          target: front/target/Front-0.0.1.jar
+          path: front/target

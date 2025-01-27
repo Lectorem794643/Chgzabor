@@ -34,11 +34,13 @@ class APIController {
     // Откатить назад, потому что 10 MB больно дохера для PDF
     public APIController(WebClient.Builder webClientBuilder) {
         this.webClient = webClientBuilder
+                .defaultHeader("Origin", "http://localhost:8001") // Добавление заголовка Origin
                 .exchangeStrategies(ExchangeStrategies.builder()
-                        .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(10 * 1024 * 1024)) // Увеличиваем до 10 MB
+                        .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(2 * 1024 * 1024)) // Уменьшаем до 2 MB
                         .build())
                 .build();
     }
+
 
     @GetMapping("/catalog")
     public ResponseEntity<String> getCatalog() {

@@ -1,0 +1,9 @@
+name: chgzabor
+
+include:
+  - ./Frontend/docker-compose.yml
+  - ./Backend/docker-compose.yml
+
+networks:
+  app-network:
+    driver: bridge

@@ -15,28 +15,28 @@ services:
           path: ./gateway/target
 
     depends_on:
-      - frontend-manager
+  #    - frontend-manager
       - model
       - pdf
     env_file:
       - .env
 
-  frontend-manager:
-    build:
-      context: ./frontendmanager
-      dockerfile: Dockerfile
-    container_name: frontend-manager
-    expose:
-     - "${FRONTEND_MANAGER_INTERNAL_PORT}"
-    networks:
-      - app-network
-    develop:
-      watch:
-        - action: rebuild
-          target: ./frontendmanager/target/FrontendManager-0.0.1.jar
-          path: ./frontendmanager/target
-    env_file:
-      - .env
+  # frontend-manager:
+  #   build:
+  #     context: ./frontendmanager
+  #     dockerfile: Dockerfile
+  #   container_name: frontend-manager
+  #   expose:
+  #    - "${FRONTEND_MANAGER_INTERNAL_PORT}"
+  #   networks:
+  #     - app-network
+  #   develop:
+  #     watch:
+  #       - action: rebuild
+  #         target: ./frontendmanager/target/FrontendManager-0.0.1.jar
+  #         path: ./frontendmanager/target
+  #   env_file:
+  #     - .env
 
   model:
     build:
@@ -71,7 +71,3 @@ services:
           path: ./pdf/target
     env_file:
       - .env
-
-networks:
-  app-network:
-    driver: bridge
