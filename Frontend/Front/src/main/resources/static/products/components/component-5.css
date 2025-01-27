@@ -4,10 +4,12 @@
     align-items: flex-start;
     gap: 20px;
     margin-bottom: 20px;
+
+    margin-left: 20px; /* Отступ слева от экрана */
 }
 
 .component-5-fieldset {
-    width: 300px;
+    width: 450px;
     padding: 20px; /* Внутренние отступы */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Легкая тень */
     background-color: #f9f9f9; /* Цвет фона для контраста */
@@ -26,7 +28,7 @@
     padding: 10px; /* Отступы внутри textarea */
     border: 1px solid #ccc; /* Рамка */
     border-radius: 3px; /* Закругленные углы */
-    font-family: 'JetBrainsMono', sans-serif; /* Шрифт */
+    font-family: 'JetBrainsMono-Regular', sans-serif; /* Шрифт */
     font-size: 14px; /* Размер шрифта */
     resize: none; /* Запрещаем изменение размера */
     overflow: auto; /* Ползунок появится, если текст слишком длинный */

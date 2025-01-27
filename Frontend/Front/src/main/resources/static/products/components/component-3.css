@@ -4,12 +4,14 @@
     align-items: flex-start; /* Выравнивание по верхнему краю */
     gap: 20px; /* Расстояние между изображением и формой */
     margin-bottom: 20px; /* Отступ снизу для обертки */
+
+    margin-left: 20px; /* Отступ слева от экрана */
 }
 
 /* Контейнер для изображения с рамкой и фиксированными размерами */
 .image-container {
-    width: 500px; /* Жестко заданная ширина */
-    height: 400px; /* Жестко заданная высота */
+    width: 925px; /* Жестко заданная ширина */
+    height: 410px; /* Жестко заданная высота */
     background-color: white; /* Белый фон за картинкой */
     display: flex; /* Центровка изображения */
     justify-content: center;
@@ -30,7 +32,7 @@
 
 /* Стиль для fieldset с жесткой шириной */
 .component-3-fieldset {
-    width: 300px; /* Жестко заданная ширина */
+    width: 450px; /* Жестко заданная ширина */
     padding: 20px; /* Внутренние отступы */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень для визуального разделения */
     background-color: #f9f9f9; /* Фон fieldset */
@@ -62,7 +64,7 @@
 
 .component-3-row input, .component-3-row select {
     flex: 1; /* Занимает оставшиеся 50% ширины строки */
-    font-family: 'JetBrainsMono', sans-serif;
+    font-family: 'JetBrainsMono-Regular', sans-serif;
     font-size: 14px;
     padding: 5px;
     border-radius: 3px;

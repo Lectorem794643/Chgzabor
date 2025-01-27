@@ -1,26 +1,32 @@
 /* Меню названия чертежа и номера заказа */
 .component-2 {
-    display: inline-flex;
-    align-items: center;
-    gap: 20px;
+    display: flex; /* Flexbox для размещения элементов в строку */
+    align-items: center; /* Выравнивание по вертикали */
+    gap: 20px; /* Расстояние между компонентами */
     margin-bottom: 20px;
     padding-right: 10px;
+
+    margin-top: 20px; /* Отступ сверху от экрана */
+    margin-left: 20px; /* Отступ слева от экрана */
 }
 
 /* Стили элемента формы */
 .component-2-item {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+    display: flex; /* Flexbox для горизонтального выравнивания */
+    flex-direction: row; /* Элементы внутри располагаются в строку */
+    align-items: center; /* Выравнивание по вертикали */
+    gap: 10px; /* Расстояние между label и input */
+    flex-shrink: 0; /* Запрещаем сжатие элемента */
 }
 
 /* Стили для полей ввода внутри строки формы */
 .component-2 input {
-    font-family: 'JetBrainsMono', sans-serif;
+    font-family: 'JetBrainsMono-Regular', sans-serif;
     font-size: 14px;
     padding: 5px;
     border-radius: 3px;
     border: 1px solid #ccc;
+    box-sizing: border-box; /* Учитываем padding в ширину */
 }
 
 /* Индивидуальные размеры полей */
