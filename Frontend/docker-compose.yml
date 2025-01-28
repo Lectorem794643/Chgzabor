@@ -4,8 +4,8 @@ services:
       context: front
       dockerfile: Dockerfile
     container_name: front
-    ports:
-      - 8001:8080
+    expose:
+      - 8080
     networks:
       - app-network
     develop:
