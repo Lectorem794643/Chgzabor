@@ -6,32 +6,34 @@ function clearForm() {
     form.reset();
 }
 
-// Парсит данные полученные form от пользователя в формат DataModel для отправки в backend
+// Парсит данные из HTML-формы в объект JSON
 function parsingHtmlFormJson() {
     const form = document.getElementById('form');
     const elements = form.elements;
     const values = {};
 
-    // Соответствует HTML форме -------|
-    values.id = "SlidingOptima001"; // |
-    // --------------------------------|
+    values.id = "SlidingOptima001"; // Статический идентификатор
 
-    for (let i = 0; i < elements.length; i++) {
-        const element = elements[i];
+    for (let element of elements) {
         if (element.name) {
             values[element.name] = element.value;
         }
     }
 
-    return JSON.stringify(values);
+    const jsonData = JSON.stringify(values);
+    console.log("Отправляемые данные:", jsonData); // Логируем перед отправкой
+
+    return jsonData;
 }
+
+// Отправляет данные на сервер, получает ответ и
 
 // Получает данные с формы, отправляет на сервер, обрабатывает ответ и отображает результат на форме.
 function processFormDataAndDisplayResults(event) {
     event.preventDefault(); // Браузер не перезагружает страницу
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:8000/api/SlidingOptima001/calculating", true);
+    xhr.open("POST", "/api/SlidingOptima001/calculating", true);
     xhr.setRequestHeader("Content-Type", "application/json");
 
     xhr.send(parsingHtmlFormJson());
@@ -62,7 +64,7 @@ function downloadDrawingPDF(event) {
     event.preventDefault(); // Браузер не перезагружает страницу
 
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', "http://localhost:8000/api/SlidingOptima001/pdf", true);
+    xhr.open('POST', "/api/SlidingOptima001/pdf", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
 
     xhr.responseType = 'blob';

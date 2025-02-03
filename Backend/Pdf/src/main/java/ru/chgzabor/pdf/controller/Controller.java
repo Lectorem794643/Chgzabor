@@ -16,7 +16,7 @@ import java.util.Map;
 public class Controller {
     private static final Logger logger = LoggerFactory.getLogger(Controller.class);
 
-    @CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "*")
+    @CrossOrigin(origins = "http://localhost:8000", allowedHeaders = "*")
     @PostMapping("/{id}/pdf")
     public ResponseEntity<byte[]> generatePDF(@PathVariable String id, @RequestBody Map<String, Object> data) {
         try {

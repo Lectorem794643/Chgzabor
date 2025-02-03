@@ -10,6 +10,7 @@ import java.io.IOException;
 public class GlobalDTO {
     public String id;
     public String drawingName; // Имя чертежа
+    public String orderNumber; // Номер закза
 
     @JsonProperty("L") public int L;
     @JsonProperty("H") public int H;

@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:8000", allowedHeaders = "*")
 @RequestMapping("/api")
 class APIController {
     private static final Logger logger = LoggerFactory.getLogger(APIController.class);
@@ -34,7 +35,7 @@ class APIController {
     // Откатить назад, потому что 10 MB больно дохера для PDF
     public APIController(WebClient.Builder webClientBuilder) {
         this.webClient = webClientBuilder
-                .defaultHeader("Origin", "http://localhost:8001") // Добавление заголовка Origin
+                .defaultHeader("Origin", "http://localhost:8000") // Добавление заголовка Origin
                 .exchangeStrategies(ExchangeStrategies.builder()
                         .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(2 * 1024 * 1024)) // Уменьшаем до 2 MB
                         .build())

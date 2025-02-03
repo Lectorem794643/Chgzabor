@@ -10,7 +10,7 @@ import java.lang.reflect.Method;
 
 @RestController
 public class Controller {
-    @CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "*")
+    @CrossOrigin(origins = "http://localhost:8000", allowedHeaders = "*")
     @PostMapping("/{id}/calculating")
     public ResponseEntity<GlobalDTO> processData(@PathVariable String id, @RequestBody String jsonString) {
         try {
