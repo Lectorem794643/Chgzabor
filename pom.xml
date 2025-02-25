@@ -26,7 +26,6 @@
 
     <!-- Секция для модулей -->
     <modules>
-        <!-- <module>Backend/FrontendManager</module> -->
         <module>Backend/Gateway</module>
         <module>Backend/Model</module>
         <module>Backend/Pdf</module>

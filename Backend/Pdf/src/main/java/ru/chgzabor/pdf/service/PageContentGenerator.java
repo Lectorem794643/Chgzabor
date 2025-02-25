@@ -54,7 +54,7 @@ public abstract class PageContentGenerator {
             document.addPage(firstPage);
             document.addPage(secondPage);
 
-            addContentToFirstPage(document, firstPage, drawingId, replacements);
+            addContentToFirstPage(document, firstPage, drawingId, replacements, dto);
             addContentToSecondPage(document, secondPage, dto);
 
             return pdfHelper.saveDocumentToByteArray(document);
@@ -64,15 +64,15 @@ public abstract class PageContentGenerator {
         }
     }
 
-    protected void addContentToFirstPage(PDDocument document, PDPage page,String drawingId, Map<String, String> replacements) throws IOException {
+    protected void addContentToFirstPage(PDDocument document, PDPage page,String drawingId, Map<String, String> replacements, Map<String, Object> dto) throws IOException {
         logger.info("Adding content to the first page.");
 
-        pdfHelper.addTextWithRectangle(document, page, "Заказ № 000-000",
+        pdfHelper.addTextWithRectangle(document, page, String.valueOf(dto.get("orderNumber")),
                 PAGE_INDENT + 5, PAGE_HEIGHT - PAGE_INDENT, 121);
-        pdfHelper.addTextWithRectangle(document, page, "Ворота Optima (заполн.: жалюзи), цельные",
-                PAGE_INDENT + 126, PAGE_HEIGHT - PAGE_INDENT, 580);
-        pdfHelper.addTextWithRectangle(document, page, "Стр. 1/2",
-                PAGE_INDENT + 706, PAGE_HEIGHT - PAGE_INDENT, 61);
+        pdfHelper.addTextWithRectangle(document, page, String.valueOf(dto.get("drawingName")),
+                PAGE_INDENT + 126, PAGE_HEIGHT - PAGE_INDENT, 579);
+        pdfHelper.addTextWithRectangle(document, page, "Стр. 2/2",
+                PAGE_INDENT + 705, PAGE_HEIGHT - PAGE_INDENT, 61);
 
 
         pdfHelper.addImageToPdf(document, page, drawingId, replacements, PAGE_INDENT, PAGE_HEIGHT - PAGE_INDENT - 5, PAGE_WIDTH - PAGE_INDENT * 2, 450);
@@ -92,9 +92,9 @@ public abstract class PageContentGenerator {
     protected void addContentToSecondPage(PDDocument document, PDPage page, Map<String, Object> dto) throws IOException {
         logger.info("Adding content to the second page.");
 
-        pdfHelper.addTextWithRectangle(document, page, "Заказ № 000-000",
+        pdfHelper.addTextWithRectangle(document, page, String.valueOf(dto.get("orderNumber")),
                 PAGE_INDENT + 5, PAGE_HEIGHT - PAGE_INDENT, 121);
-        pdfHelper.addTextWithRectangle(document, page, "Ворота Optima (заполн.: жалюзи), цельные",
+        pdfHelper.addTextWithRectangle(document, page, String.valueOf(dto.get("drawingName")),
                 PAGE_INDENT + 126, PAGE_HEIGHT - PAGE_INDENT, 579);
         pdfHelper.addTextWithRectangle(document, page, "Стр. 2/2",
                 PAGE_INDENT + 705, PAGE_HEIGHT - PAGE_INDENT, 61);
